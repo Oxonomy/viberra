@@ -1,0 +1,67 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports: [ "6379:6379" ]
+
+  coturn:
+    image: instrumentisto/coturn:latest
+    network_mode: "host"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    command:
+      - turnserver
+      - --verbose
+      - --listening-ip=0.0.0.0
+      - --listening-port=${TURN_PORT}
+      - --tls-listening-port=${TURN_TLS_PORT}
+      - --min-port=${TURN_MIN_PORT}
+      - --max-port=${TURN_MAX_PORT}
+      - --realm=${TURN_REALM}
+      - --use-auth-secret
+      - --static-auth-secret=${TURN_SECRET}
+      - --fingerprint
+      - --stale-nonce
+      - --no-multicast-peers
+      - --no-cli
+      - --pidfile=/var/run/turnserver.pid
+      - --cert=/etc/letsencrypt/live/turn.viberra.life/fullchain.pem
+      - --pkey=/etc/letsencrypt/live/turn.viberra.life/privkey.pem
+      - --no-tlsv1
+      - --no-tlsv1_1
+    restart: unless-stopped
+
+
+  control-api:
+    build: ./services/control-api
+    environment:
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+      - REDIS_URL=${REDIS_URL}
+      - TURN_REALM=${TURN_REALM}
+      - TURN_SECRET=${TURN_SECRET}
+      - TURN_HOST=${TURN_HOST}
+      - TURN_PORT=${TURN_PORT}
+      - HEARTBEAT_INTERVAL_SEC=${HEARTBEAT_INTERVAL_SEC:-15}
+      - ROOM_TTL_SEC=${ROOM_TTL_SEC:-300}
+      - DB_URL=${DB_URL}
+      - PASETO_KID=${PASETO_KID}
+      - PASETO_PRIV_PEM_PATH=/run/secrets/paseto_v4-202510-f19c.priv.pem
+      - PASETO_PUB_PEM_PATH=/run/secrets/paseto_v4-202510-f19c.pub.pem
+    volumes:
+      - ./services/control-api/secrets:/run/secrets:ro
+    ports:
+      - "${API_PORT:-8087}:8080"
+    depends_on: [ redis ]
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./web
+      args:
+        API_URL: https://${API_URL}
+    environment:
+      - ENABLE_HSTS=${ENABLE_HSTS:-false}
+    ports:
+      - "${WEB_PORT:-8090}:80"
+    restart: unless-stopped

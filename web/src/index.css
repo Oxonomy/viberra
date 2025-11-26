@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-green-400 font-mono;
+  }
+}
+
+/* xterm.js custom styles */
+.xterm {
+  font-family: 'Courier New', monospace;
+  font-feature-settings: "liga" 0;
+  position: relative;
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.xterm.focus,
+.xterm:focus {
+  outline: none;
+}
+
+/* Terminal and Cyberpunk Effects */
+.scan-lines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 163, 74, 0.03) 50%,
+    transparent 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(22, 163, 74, 0.5),
+    0 0 20px rgba(22, 163, 74, 0.3),
+    0 0 30px rgba(22, 163, 74, 0.1);
+}
+
+/* Utility classes */
+@layer utilities {
+  .animate-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .cursor-blink {
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  /* P2P Connection Demo animations */
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+
+  /* Particles flowing left to right (encryption) */
+  .particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgb(22, 163, 74);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(22, 163, 74, 0.8);
+    opacity: 0;
+  }
+
+  .particle-1 {
+    animation: particle-flow 3s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+
+  .particle-2 {
+    animation: particle-flow 3s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .particle-3 {
+    animation: particle-flow 3s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  /* Particles flowing right to left (decryption) */
+  .particle-reverse {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgb(22, 163, 74);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(22, 163, 74, 0.8);
+    opacity: 0;
+  }
+
+  .particle-reverse-1 {
+    animation: particle-flow-reverse 3s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .particle-reverse-2 {
+    animation: particle-flow-reverse 3s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+
+  .particle-reverse-3 {
+    animation: particle-flow-reverse 3s ease-in-out infinite;
+    animation-delay: 2.5s;
+  }
+}
+
+/* Keyframes */
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 30px hsl(142 76% 56% / 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 50px hsl(142 76% 56% / 0.6);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Horizontal particle flow (desktop) */
+@keyframes particle-flow {
+  0% {
+    left: 0%;
+    top: 50%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    top: 50%;
+    opacity: 0;
+  }
+}
+
+@keyframes particle-flow-reverse {
+  0% {
+    left: 100%;
+    top: 50%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 0%;
+    top: 50%;
+    opacity: 0;
+  }
+}
+
+/* Mobile: vertical particle flow */
+@media (max-width: 1023px) {
+  @keyframes particle-flow {
+    0% {
+      left: 50%;
+      top: 0%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 50%;
+      top: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes particle-flow-reverse {
+    0% {
+      left: 50%;
+      top: 100%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 50%;
+      top: 0%;
+      opacity: 0;
+    }
+  }
+}

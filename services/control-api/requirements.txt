@@ -1,0 +1,13 @@
+fastapi>=0.111
+uvicorn[standard]>=0.30
+pydantic>=2.7
+redis>=5.0
+orjson>=3.10
+python-dotenv>=1.0
+tortoise-orm[asyncpg]>=0.20.0
+aerich>=0.7.2
+pydantic-settings==2.11.0
+PyNaCl==1.6.0
+pyseto>=1.7.1
+loguru>=0.7.3
+slowapi>=0.1.9
