@@ -33,11 +33,9 @@ Configure your CLI agent (e.g. Claude Code) as usual — Viberra will bridge it 
 
 Open:
 
-```text
-https://viberra.life/app
-```
+👉 [Open Viberra Web App](https://viberra.life/app)
 
-Log in, select your session, and continue vibe-coding with your CLI agent from your current device.
+Pair device, select your session, and continue vibe-coding with your CLI agent from your current device.
 
 ---
 
@@ -56,9 +54,41 @@ Viberra lets you vibecode from a phone, or any browser—no cloud IDE, no SSH ha
 
 ---
 
-### Key Features
+## Popular Use Cases
 
 ![keep\_coding.gif](images%2Fkeep_coding.gif)
+
+Some ways Viberra can fit into real workflows:
+
+### Nudge long-running work from your phone
+
+You’ve got a long-running CLI agent working through a codebase on your dev machine.
+With Viberra, you:
+
+* open the web UI on your phone,
+* reconnect to the existing session,
+* check progress, tweak prompts, or kick off the next step.
+
+### Remote “one more tweak” to your agent
+
+You’re away from your main laptop but remember a small change your agent needs:
+
+* connect from a different machine,
+* attach to the same agent running on your dev box,
+* make the edit, run tests, ship.
+
+### Travel / low-trust device workflows
+
+Use Viberra as a way to:
+
+* keep all real work on your own hardware,
+* interact via an E2EE terminal from a browser on a temporary device,
+* avoid logging into SSH from that device entirely.
+
+---
+
+### Key Features
+
 
 * **Session continuity**
   Keep your agent’s context instead of restarting from scratch every time you switch devices.
@@ -100,71 +130,6 @@ At a high level, Viberra consists of three main pieces:
 3. You open the Viberra web UI from any device and authenticate.
 4. Client and agent negotiate a WebRTC P2P connection.
 5. Once the tunnel is up, your terminal session flows directly between browser and agent.
-
----
-
-## Documentation
-
-Planned / recommended documentation structure:
-
-* **Getting Started** – installation, first agent, first remote connection
-* **Configuration** – environment variables, multi-agent setups, auth options
-* **Architecture** – control API, signaling, WebRTC, PTY handling
-* **Security** – threat model, E2EE details, recommended deployment patterns
-* **Self-hosting Guide** – running the full stack (API + agent + web) on your own infra
-* **CLI Reference** – commands and flags for `vibe` / `viberra` CLI
-
----
-
-## What's New
-
-Early-stage highlights:
-
-* **Alpha:**
-
-  * Initial WebRTC-based P2P terminal bridge
-  * Basic agent ↔ web client connectivity
-  * Simple session handling
-
-* **Next up:**
-
-  * Multi-session / multi-agent support
-  * Better mobile UX
-  * Fine-grained access controls and auditing
-  * More robust reconnect and resume behavior
-
-Update this section as releases ship (e.g. `v0.1.0`, `v0.2.0`, etc.).
-
----
-
-## Popular Use Cases
-
-Some ways Viberra can fit into real workflows:
-
-### Nudge long-running work from your phone
-
-You’ve got a long-running CLI agent working through a codebase on your dev machine.
-With Viberra, you:
-
-* open the web UI on your phone,
-* reconnect to the existing session,
-* check progress, tweak prompts, or kick off the next step.
-
-### Remote “one more tweak” to your agent
-
-You’re away from your main laptop but remember a small change your agent needs:
-
-* connect from a different machine,
-* attach to the same agent running on your dev box,
-* make the edit, run tests, ship.
-
-### Travel / low-trust device workflows
-
-Use Viberra as a way to:
-
-* keep all real work on your own hardware,
-* interact via an E2EE terminal from a browser on a temporary device,
-* avoid logging into SSH from that device entirely.
 
 ---
 

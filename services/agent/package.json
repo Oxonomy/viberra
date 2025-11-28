@@ -1,7 +1,7 @@
 {
   "name": "viberra",
-  "version": "0.2.0",
-  "description": "Local PTY ↔ WebRTC agent for Viberra - secure remote terminal access",
+  "version": "0.2.1",
+  "description": "Secure P2P terminal access - end-to-end encrypted WebRTC, no SSH, VPNs or port forwarding",
   "type": "module",
   "bin": {
     "viberra-agent": "./bin/viberra-agent.mjs",
@@ -22,7 +22,7 @@
     "e2ee"
   ],
   "author": "Kirill Ribkin <kirillribkin1998@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/kirillribkin/viberra.git",

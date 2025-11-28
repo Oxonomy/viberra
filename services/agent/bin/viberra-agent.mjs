@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import process from 'node:process';
 import sodium from 'libsodium-wrappers-sumo';
 import { opts, parseCliArgs, printHelp, printVersion } from '../src/constants.mjs';
