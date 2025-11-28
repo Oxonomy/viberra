@@ -18,7 +18,7 @@ The simplest way to use Viberra with your CLI agent.
 ### 1. Install
 
 ```bash
-npm i viberra
+npm install -g viberra
 ````
 
 ### 2. Launch your agent
