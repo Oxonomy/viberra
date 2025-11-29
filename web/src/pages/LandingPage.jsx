@@ -203,7 +203,7 @@ function StepsColumn() {
   return (
       <div className="relative w-full max-w-md">
         <StepItem step="1" title="Install">
-          <CommandBlock command="npm i viberra" />
+          <CommandBlock command="npm i -g viberra" />
         </StepItem>
 
         <StepItem step="2" title="Launch">
